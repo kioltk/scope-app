@@ -2,6 +2,8 @@
 
 Tool for remote analysis of your application
 
+![screenshot](.github/screenshot.png)
+
 ## Usage
 
 Clone the source locally:
