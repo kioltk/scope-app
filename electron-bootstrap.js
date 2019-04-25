@@ -1,8 +1,8 @@
 console.log("Starting electron");
 const { app, BrowserWindow, crashReporter } = require("electron");
 const bonjour = require("./bonjour");
-const receiver = require("../core/receiver");
-const server = require("../core/server");
+const receiver = require("./core/receiver");
+const server = require("./core/server");
 const os = require("os");
 
 app.on("window-all-closed", () => {
@@ -13,19 +13,16 @@ app.on("window-all-closed", () => {
 
 app.on("ready", () => {
   console.log("Electron app is ready");
-  mainWindow = new BrowserWindow({ width: 1360, height: 800 });
-
-  if (process.env.NODE_ENV === "development") {
-    const web = "http://localhost:3000/";
-
-    mainWindow.loadURL(web);
-    // mainWindow.openDevTools();
-    console.log("Loading url");
-  } else {
-    const file = "file://" + __dirname + "/public/index.html";
-    mainWindow.loadURL(file);
-    mainWindow.openDevTools();
-  }
+  mainWindow = new BrowserWindow({
+    title: "Scope",
+    width: 1000,
+    height: 600,
+    backgroundColor: "#323232",
+    icon: "build/icon.png"
+  });
+  const web = "http://localhost:3000/";
+  mainWindow.loadURL(web);
+  console.log("Loading url");
 
   mainWindow.on("closed", () => {
     mainWindow = null;

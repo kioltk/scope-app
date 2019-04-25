@@ -1,11 +1,11 @@
 {
-  "name": "cross",
-  "version": "1.0.0",
+  "name": "Scope",
+  "version": "0.1.0",
   "main": "electron-bootstrap.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec electron .",
-    "start": "electron .",
+    "start": "concurrently \" cd web && BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "build",
     "postinstall": "submodules-install"
   },
   "submodules": [
@@ -13,14 +13,13 @@
     "web/**"
   ],
   "dependencies": {
-    "mdns": "^2.4.0",
-    "socket.io": "^2.2.0",
-    "submodules-install": "^1.0.1"
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "electron": "*",
-    "electron-rebuild": "^1.8.2",
-    "nodemon": "^1.18.9"
+    "electron-builder": "^20.39.0",
+    "concurrently": "^4.1.0",
+    "submodules-install": "^1.0.1",
+    "wait-on": "^3.2.0",
+    "electron": "*"
   }
 }
